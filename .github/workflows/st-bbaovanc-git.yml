@@ -1,0 +1,21 @@
+on: [push]
+
+jobs:
+    st-bbaovanc-git_job:
+        runs-on: ubuntu-latest
+        name: Build bbaovanc's st fork
+        steps:
+            - name: Clone AUR repo
+              run: |
+                  git clone https://aur.archlinux.org/st-bbaovanc-git.git
+
+            - name: Makepkg
+              uses: BBaoVanC/makepkg-action@master
+              with:
+                  path: 'st-bbaovanc-git'
+
+            - name: Upload package
+              uses: actions/upload-artifact@v2
+              with:
+                  name: st-bbaovanc-git-package
+                  path: st-bbaovanc-git*.pkg.*
