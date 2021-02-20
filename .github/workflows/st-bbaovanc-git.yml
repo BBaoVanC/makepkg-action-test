@@ -8,13 +8,14 @@ jobs:
             - name: Clone AUR repo
               run: |
                   git clone https://aur.archlinux.org/st-bbaovanc-git.git
-                  cd st-bbaovanc-git
 
             - name: Makepkg
-              uses: edlanglois/pkgbuild-action@v1
+              uses: py7hon/arch-makepkg@v0.0.2
+              with:
+                  path: 'st-bbaovanc-git'
 
             - name: Upload package
               uses: actions/upload-artifact@v2
               with:
-                  name: st-bbaovanc-git-package
-                  path: st-bbaovanc-git*.pkg.*
+                  name: st-bbaovanc-git/st-bbaovanc-git-package
+                  path: st-bbaovanc-git/st-bbaovanc-git*.pkg.*
