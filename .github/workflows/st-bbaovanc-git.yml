@@ -10,12 +10,12 @@ jobs:
                   git clone https://aur.archlinux.org/st-bbaovanc-git.git
 
             - name: Makepkg
-              uses: py7hon/arch-makepkg@v0.0.2
+              id: makepkg
+              uses: smallstep/pkgbuild-action@v1.0.1
               with:
-                  path: 'st-bbaovanc-git'
+                  pkgdir: 'st-bbaovanc-git'
 
             - name: Upload package
               uses: actions/upload-artifact@v2
               with:
-                  name: st-bbaovanc-git/st-bbaovanc-git-package
-                  path: st-bbaovanc-git/st-bbaovanc-git*.pkg.*
+                  path: ${{ steps.makepkg.outputs.pkgfile0 }}
